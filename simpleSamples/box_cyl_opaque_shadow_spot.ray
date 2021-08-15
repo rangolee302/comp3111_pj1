@@ -1,0 +1,38 @@
+SBT-raytracer 1.0
+
+// box_cyl_opaque_shadow.ray
+// Test opaque shadows
+
+camera
+{
+	position = (10,10, 10);
+	viewdir = (-1, -1, -1);
+	updir = (0, 1, 0);
+}
+
+// This light should cast the shadow of the
+// cylinder on the box.
+spot_light
+{
+	position = (0, 3, 0);
+	color = (1, 1, 1);
+	coneDir = (0, -1, 0);
+	coneAngle = 180;
+}
+
+// The box forms a plane
+translate( 0, 0, -2,
+	scale( 15, 1, 15,
+		box {
+			material = {
+				diffuse = (1.0, 0, 0);
+			}
+		} ) )
+
+translate( 0, 1, 0,
+	cylinder {
+		material = {
+			diffuse = (0, 1.0, 0);
+			ambient = (0, 0.3, 0);
+		}
+	} )
